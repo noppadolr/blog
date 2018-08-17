@@ -3,9 +3,11 @@
     <head>
         <title>Laravel</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        
+        {{-- <link rel="stylesheet" href="assets/fonts/fonts.css"> --}}
 
         <style>
+@import url('https://fonts.googleapis.com/css?family=Prompt:300');
             html, body {
                 height: 100%;
             }
@@ -16,7 +18,7 @@
                 width: 100%;
                 display: table;
                 font-weight: 100;
-                font-family: 'Lato';
+                font-family: 'Prompt', sans-serif;
             }
 
             .container {
@@ -39,6 +41,9 @@
         <div class="container">
             <div class="content">
                 <div class="title">Laravel 5</div>
+
+                <h1>ทดสอบฟ้อน</h1>                
+
             </div>
         </div>
     </body>

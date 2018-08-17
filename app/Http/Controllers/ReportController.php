@@ -15,6 +15,43 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+
+
+     public function Dashboard(){
+
+
+DB::statement(DB::raw('SET @ty :=(SELECT concat(yearprocess-2,1001) FROM pk_byear LIMIT 1);'));
+DB::statement(DB::raw('SET @bdate :=(SELECT concat(yearprocess-1,1001) FROM pk_byear LIMIT 1);'));
+  
+/*
+       $sqlbdate = "SELECT concat(yearprocess-1,'1001') FROM pk_byear LIMIT 1";
+       $Bdate = DB::select($sqlbdate);
+  */
+  
+       $sql="
+       SELECT COUNT(*) as c
+       FROM
+       (
+SELECT pr.HOSPCODE,pr.PID,pr.GRAVIDA,pr.LMP,pr.EDC,pr.VDRL_RESULT,pr.HB_RESULT,pr.HIV_RESULT
+,pr.DATE_HCT,pr.THALASSEMIA,p.PRENAME,p.`NAME`,p.LNAME,p.BIRTH,p.NATION,p.TYPEAREA,p.DISCHARGE,p.SEX
+from prenatal as pr
+LEFT JOIN anc as a on pr.HOSPCODE=a.HOSPCODE and pr.PID=a.PID AND pr.GRAVIDA=a.GRAVIDA
+LEFT JOIN person as p on pr.HOSPCODE=p.HOSPCODE AND pr.PID=p.PID
+WHERE pr.LMP>= @ty
+AND a.DATE_SERV>=@bdate
+and p.TYPEAREA in (1,3)
+#AND p.NATION=099
+GROUP BY concat(pr.HOSPCODE,pr.PID,pr.GRAVIDA))as x";
+       $data=DB::select($sql);
+
+       //dd($tyear);
+     //dd($data);
+
+       return view('pages.dashboard',['newcase'=>$data]);
+     }
+
+
      public function Test()
      {
          //$a = DB::Table('provider')->get();

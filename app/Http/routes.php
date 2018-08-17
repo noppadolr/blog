@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\DB;
 | and give it the controller to call when that URI is requested.
 |
 */
-
+/*
 Route::get('/',function() {
-    return view('welcome');
+    return view('pages.dashboard');
 
-});
-
-
+})->name('home');
+*/
+Route::get('/','ReportController@Dashboard')->name('home');
 Route::get('report','ReportController@index');
