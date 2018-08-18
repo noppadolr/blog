@@ -21,7 +21,7 @@
                 <span class="info-box-text">ตั้งครรภ์รายใหม่</span>
                 <span class="info-box-number">
                 @foreach ($newcase as $k)
-                    {{ $k->c }}    
+                    {{ $k->c }}
                 @endforeach
                 </span>
     <!-- The progress section is optional -->
@@ -96,10 +96,45 @@
 </div>
 
 
+ <div class="row">
+   <div class="col-xs-8">
+
+        <div class="card">
+        <div class="card-header bg-primary">
+          Quote
+        </div>
+        <div class="card-body">
+
+        </div>
+      </div>
+      
+    </div>
+
+   <div class="col-xs-4">
+     <div class="panel panel-primary">
+       <div class="panel-heading">
+           Test Form
+       </div>
+       <div class="panel-body">
+
+       </div>
+       <div class="panel-footer">
+          เรียนจากธีรภัทร
+       </div>
+     </div>
+   </div>{{-- col --}}
+</div>
+
+
+
 @foreach ($newcase as $k)
-    {{ $k->c }}    
-    
+    {{ $k->c }}
 @endforeach
+
+@foreach ($pc as $p)
+    {{ $p->pc }}
+@endforeach
+
 
 
 

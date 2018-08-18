@@ -21,14 +21,14 @@ class ReportController extends Controller
      public function Dashboard(){
 
 
-DB::statement(DB::raw('SET @ty :=(SELECT concat(yearprocess-2,1001) FROM pk_byear LIMIT 1);'));
-DB::statement(DB::raw('SET @bdate :=(SELECT concat(yearprocess-1,1001) FROM pk_byear LIMIT 1);'));
-  
+        DB::statement(DB::raw('SET @ty :=(SELECT concat(yearprocess-2,1001) FROM pk_byear LIMIT 1);'));
+        DB::statement(DB::raw('SET @bdate :=(SELECT concat(yearprocess-1,1001) FROM pk_byear LIMIT 1);'));
+
 /*
        $sqlbdate = "SELECT concat(yearprocess-1,'1001') FROM pk_byear LIMIT 1";
        $Bdate = DB::select($sqlbdate);
   */
-  
+
        $sql="
        SELECT COUNT(*) as c
        FROM
@@ -44,11 +44,13 @@ and p.TYPEAREA in (1,3)
 #AND p.NATION=099
 GROUP BY concat(pr.HOSPCODE,pr.PID,pr.GRAVIDA))as x";
        $data=DB::select($sql);
-
+$sqlPersonCount = "SELECT  COUNT(*) as pc from person";
+$personCount=DB::select($sqlPersonCount);
+//dd($personCount);
        //dd($tyear);
      //dd($data);
 
-       return view('pages.dashboard',['newcase'=>$data]);
+       return view('pages.dashboard',['newcase'=>$data],['pc'=>$personCount]);
      }
 
 
